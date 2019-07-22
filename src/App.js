@@ -8,6 +8,10 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
+import Products from './products/Products'
+import Product from './products/Product'
+import ProductCreate from './products/ProductCreate'
+import ProductEdit from './products/ProductEdit'
 
 import Alert from 'react-bootstrap/Alert'
 
@@ -43,6 +47,9 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
+          <AuthenticatedRoute user={user} exact path='/create-product' render={() => <ProductCreate user={user}/>} />
+          <AuthenticatedRoute user={user} exact path='/products/:id/edit' render={() => <ProductEdit user={user}/>} />
+
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -54,6 +61,12 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <Route exact path='/' render={() => (
+            <Products alert={this.alert} setUser={this.setUser} />
+          )} />
+          <Route exact path='/products/:id' render={() => (
+            <Product alert={this.alert} setUser={this.setUser} user={user}/>
           )} />
         </main>
       </React.Fragment>
