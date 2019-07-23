@@ -42,7 +42,6 @@ const ProductForm = ({ product, handleSubmit, handleChange, cancelPath }) => (
         type="file"
         name="file"
         onChange={handleChange}
-        value={product.url}
       />
     </Form.Group>
     <Button variant="primary" type="submit">Submit</Button>

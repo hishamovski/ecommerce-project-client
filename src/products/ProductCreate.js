@@ -26,24 +26,13 @@ class ProductCreate extends Component {
     // use object to create updated state object
     const editedProduct = Object.assign(this.state.product, updatedField)
     // finally setState with updated object
-    this.setState({ book: editedProduct })
+    this.setState({ product: editedProduct })
   }
 
   handleSubmit = event => {
     event.preventDefault()
     const formData = new FormData(event.target)
-
-    // axios({
-    //   url: `${apiUrl}/products`,
-    //   method: 'POST',
-    //   headers: {
-    //     'Authorization': `Token token=${this.props.user.token}`
-    //   },
-    //   data: { product: this.state.product }
-    // })
-    //   .then(res => this.setState({ createdProductId: res.data.product._id }))
-    //   .then()
-    //   .catch(console.error)
+    console.log(this.state.product)
     axios({
       method: 'POST',
       url: `${apiUrl}/uploads`,
@@ -54,9 +43,29 @@ class ProductCreate extends Component {
       },
       data: formData
     })
-      .then(res => console.log(res.data.upload.url))
-      .catch(console.error('failed inside the catch'))
+      .then(res => {
+        // const updatedField = { url: res.data.upload.url }
+        // const editedProduct = Object.assign(this.state.product, updatedField)
+        this.setState({
+          product: {
+            ...this.state.product,
+            url: res.data.upload.url
+          }
+        })
+        console.log(res.data.upload.url)
+        axios({
+          url: `${apiUrl}/products`,
+          method: 'POST',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          },
+          data: { product: this.state.product }
+        })
+          .then(res => this.setState({ createdProductId: res.data.product._id }))
+      })
+      .catch(console.error)
   }
+
   render () {
     const { handleChange, handleSubmit } = this
     const { product, createdProductId } = this.state
@@ -70,10 +79,9 @@ class ProductCreate extends Component {
         <h4> Create a New Product</h4>
         <ProductForm
           product={product}
-          handleChange={handleChange}
           handleSubmit={handleSubmit}
-          cancelPath="/"
-        />
+          handleChange={handleChange}
+          cancelPath={'/'}/>
       </Layout>
     )
   }
