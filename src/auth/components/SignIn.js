@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 
 import { signIn } from '../api'
 import messages from '../messages'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 class SignIn extends Component {
   constructor () {
@@ -38,28 +40,32 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onSignIn}>
+      <Form className='auth-form' onSubmit={this.onSignIn}>
         <h3>Sign In</h3>
-        <label htmlFor="email">Email</label>
-        <input
-          required
-          type="email"
-          name="email"
-          value={email}
-          placeholder="Email"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          required
-          name="password"
-          value={password}
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Sign In</button>
-      </form>
+        <Form.Group controlId="email">
+          <Form.Label>Product</Form.Label>
+          <Form.Control
+            required
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Email"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            required
+            name="password"
+            value={password}
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Button type="submit">Sign In</Button>
+      </Form>
     )
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../apiConfig'
 import Button from 'react-bootstrap/Button'
@@ -10,6 +10,7 @@ class Product extends Component {
     super(props)
     this.state = {
       error: null,
+      deleted: false,
       product: null
     }
   }
@@ -22,19 +23,37 @@ class Product extends Component {
       .catch(console.error)
   }
 
+  deleteMovie = () => {
+    axios({
+      url: `${apiUrl}/products/${this.props.match.params.id}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      }
+    })
+      .then(res => {
+        this.setState({ deleted: true })
+      })
+      .catch(err => this.setState({ error: err.message }))
+  }
+
   render () {
-    console.log(this.state.product)
-    const { product, error } = this.state
+    const { product, error, deleted } = this.state
     const { user } = this.props
     if (error) {
       return <p> ERROR: NOT FOUND</p>
+    }
+    if (deleted) {
+      return <Redirect to={
+        { pathname: '/', state: { msg: 'Movie Successfully deleted' } }
+      }/>
     }
     if (!product) {
       return <p>Loading...</p>
     }
     const ownerButtons = (
       <div>
-        <Button className="mr-3" size="md" variant="danger">Delete</Button>
+        <Button onClick={this.deleteMovie} className="mr-3" size="md" variant="danger">Delete</Button>
         <Button className="mr-3" size="md" variant="secondary" href={`#products/${this.props.match.params.id}/edit`}>Edit</Button>
       </div>
     )

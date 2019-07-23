@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 
 const ProductForm = ({ product, handleSubmit, handleChange, cancelPath }) => (
 
-  <Form onSubmit={handleSubmit}>
+  <Form onSubmit={handleSubmit} encType="multipart/form-data">
     <Form.Group controlId="title">
       <Form.Label>Product</Form.Label>
       <Form.Control
@@ -36,12 +36,11 @@ const ProductForm = ({ product, handleSubmit, handleChange, cancelPath }) => (
         value={product.price}
       />
     </Form.Group>
-    <Form.Group controlId="url">
+    <Form.Group controlId="file" encType="multipart/form-data">
       <Form.Label>Picture Url</Form.Label>
       <Form.Control
         type="file"
-        placeholder="url"
-        name="url"
+        name="file"
         onChange={handleChange}
         value={product.url}
       />

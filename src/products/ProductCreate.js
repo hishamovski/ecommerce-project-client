@@ -12,8 +12,7 @@ class ProductCreate extends Component {
       product: {
         title: '',
         details: '',
-        price: '',
-        url: ''
+        price: ''
       },
       createdProductId: null
     }
@@ -32,16 +31,31 @@ class ProductCreate extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+    const formData = new FormData(event.target)
+
+    // axios({
+    //   url: `${apiUrl}/products`,
+    //   method: 'POST',
+    //   headers: {
+    //     'Authorization': `Token token=${this.props.user.token}`
+    //   },
+    //   data: { product: this.state.product }
+    // })
+    //   .then(res => this.setState({ createdProductId: res.data.product._id }))
+    //   .then()
+    //   .catch(console.error)
     axios({
-      url: `${apiUrl}/products`,
       method: 'POST',
+      url: `${apiUrl}/uploads`,
+      contentType: false,
+      processData: false,
       headers: {
         'Authorization': `Token token=${this.props.user.token}`
       },
-      data: { product: this.state.product }
+      data: formData
     })
-      .then(res => this.setState({ createdProductId: res.data.product._id }))
-      .catch(console.error)
+      .then(res => console.log(res.data.upload.url))
+      .catch(console.error('failed inside the catch'))
   }
   render () {
     const { handleChange, handleSubmit } = this
