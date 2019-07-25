@@ -21,29 +21,16 @@ class App extends Component {
     super()
 
     this.state = {
-      user: {
-        admin: null,
-        authenticated: false
-      },
+      user: null,
       alerts: []
     }
   }
 
-  setUser = (user, authenticated) => {
-    const user1 = {
-      authenticated: authenticated,
-      admin: user.admin,
-      createdAt: user.createdAt,
-      email: user.email,
-      token: user.token,
-      updatedAt: user.updatedAt,
-      __v: user._v,
-      _id: user._id
-    }
-    this.setState({ user: user1 })
+  setUser = (user) => {
+    this.setState({ user })
   }
 
-  clearUser = () => this.setState({ user: { admin: null, authenticated: false } })
+  clearUser = () => this.setState({ user: null })
 
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })

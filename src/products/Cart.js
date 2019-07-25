@@ -101,7 +101,6 @@ class Cart extends Component {
       // </React.Fragment>
     ))
     async function handleToken (token, addresses) {
-      console.log(token)
       const response = await axios.post(
         'https://2soen.sse.codesandbox.io/checkout',
         { token, productToBuy }
@@ -118,6 +117,12 @@ class Cart extends Component {
     if (cart.length === 0) {
       return <p>Your cart is empty</p>
     }
+
+    let total = 0
+    for (let i = 0; i < this.state.cart.length; i++) {
+      total += this.state.cart[i].product.price
+    }
+
     return <Layout md="8" lg="6">
       <Title name="your" title="cart" />
       <ListGroup>
@@ -126,7 +131,7 @@ class Cart extends Component {
       <StripeCheckout
         stripeKey='pk_test_tYXOXZbOrhhZzDDSifz32Pbn001v5qn6LG'
         token={handleToken}
-        amount={200}
+        amount={total * 100}
         name={productToBuy.name}
         billingAddress
         shippingAddress

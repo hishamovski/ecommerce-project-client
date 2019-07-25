@@ -10,11 +10,6 @@ const authenticatedOptions = (
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
     <Nav.Link href="#cart">cart</Nav.Link>
     <Nav.Link href="#products">Products</Nav.Link>
-  </React.Fragment>
-)
-
-const adminOptions = (
-  <React.Fragment>
     <Nav.Link href="#create-product">Create A Product</Nav.Link>
   </React.Fragment>
 )
@@ -40,8 +35,7 @@ const Header = ({ user }) => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto dark">
           { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
-          { user.authenticated ? authenticatedOptions : unauthenticatedOptions }
-          { user.admin ? adminOptions : '' }
+          { user ? authenticatedOptions : unauthenticatedOptions }
           { alwaysOptions }
         </Nav>
       </Navbar.Collapse>
