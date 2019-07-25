@@ -12,6 +12,7 @@ import Products from './products/Products'
 import Product from './products/Product'
 import ProductCreate from './products/ProductCreate'
 import ProductEdit from './products/ProductEdit'
+import Cart from './products/Cart'
 
 import Alert from 'react-bootstrap/Alert'
 
@@ -20,14 +21,29 @@ class App extends Component {
     super()
 
     this.state = {
-      user: null,
+      user: {
+        admin: null,
+        authenticated: false
+      },
       alerts: []
     }
   }
 
-  setUser = user => this.setState({ user })
+  setUser = (user, authenticated) => {
+    const user1 = {
+      authenticated: authenticated,
+      admin: user.admin,
+      createdAt: user.createdAt,
+      email: user.email,
+      token: user.token,
+      updatedAt: user.updatedAt,
+      __v: user._v,
+      _id: user._id
+    }
+    this.setState({ user: user1 })
+  }
 
-  clearUser = () => this.setState({ user: null })
+  clearUser = () => this.setState({ user: { admin: null, authenticated: false } })
 
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
@@ -35,7 +51,6 @@ class App extends Component {
 
   render () {
     const { alerts, user } = this.state
-
     return (
       <React.Fragment>
         <Header user={user} />
@@ -49,6 +64,8 @@ class App extends Component {
         <main className="container">
           <AuthenticatedRoute user={user} exact path='/create-product' render={() => <ProductCreate user={user}/>} />
           <AuthenticatedRoute user={user} exact path='/products/:id/edit' render={() => <ProductEdit user={user}/>} />
+          <AuthenticatedRoute user={user} exact path='/cart' render={() => <Cart user={user}/>} />
+          <AuthenticatedRoute user={user} exact path='/products' render={() => <Products user={user}/>} />
 
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
@@ -61,9 +78,6 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
-          )} />
-          <Route exact path='/' render={() => (
-            <Products alert={this.alert} setUser={this.setUser} />
           )} />
           <Route exact path='/products/:id' render={() => (
             <Product alert={this.alert} setUser={this.setUser} user={user}/>

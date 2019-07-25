@@ -1,12 +1,20 @@
 import React from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { Link } from 'react-router-dom'
 import './Header.scss'
 
 const authenticatedOptions = (
   <React.Fragment>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+    <Nav.Link href="#cart">cart</Nav.Link>
+    <Nav.Link href="#products">Products</Nav.Link>
+  </React.Fragment>
+)
+
+const adminOptions = (
+  <React.Fragment>
     <Nav.Link href="#create-product">Create A Product</Nav.Link>
   </React.Fragment>
 )
@@ -20,23 +28,26 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
   <React.Fragment>
-    <Nav.Link href="#books">Home</Nav.Link>
+    <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
   </React.Fragment>
 )
 
-const Header = ({ user }) => (
-  <Navbar collapseOnSelect bg="info" variant="dark" expand="md">
-    <Navbar.Brand href="#home">Ecommerce</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto dark">
-        { user && <span>Welcome, {user.email}</span>}
-        { user ? authenticatedOptions : unauthenticatedOptions }
-        { alwaysOptions }
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-)
+const Header = ({ user }) => {
+  return (
+    <Navbar collapseOnSelect bg="info" variant="dark" expand="md">
+      <Navbar.Brand as={Link} to={'/'}>Ecommerce</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto dark">
+          { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
+          { user.authenticated ? authenticatedOptions : unauthenticatedOptions }
+          { user.admin ? adminOptions : '' }
+          { alwaysOptions }
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  )
+}
 
 export default Header
 
