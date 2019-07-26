@@ -13,6 +13,7 @@ import Product from './products/Product'
 import ProductCreate from './products/ProductCreate'
 import ProductEdit from './products/ProductEdit'
 import Cart from './products/Cart'
+import Home from './products/Home'
 
 import Alert from 'react-bootstrap/Alert'
 
@@ -56,6 +57,9 @@ class App extends Component {
 
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
+          )} />
+          <Route path='/' render={() => (
+            <Home alert={this.alert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
