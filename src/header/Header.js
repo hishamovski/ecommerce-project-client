@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 import './Header.scss'
+import Image from 'react-bootstrap/Image'
 
 const authenticatedOptions = (
   <React.Fragment>
@@ -30,7 +31,7 @@ const alwaysOptions = (
 const Header = ({ user }) => {
   return (
     <Navbar collapseOnSelect bg="info" variant="dark" expand="md">
-      <Navbar.Brand as={Link} to={'/'}>Ecommerce</Navbar.Brand>
+      <Navbar.Brand as={Link} to={'/'}><Image src="../../public/logo.png"></Image></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto dark">
