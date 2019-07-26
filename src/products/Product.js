@@ -14,7 +14,8 @@ class Product extends Component {
       error: null,
       deleted: false,
       products: [],
-      cart: []
+      cart: [],
+      uploaded: false
     }
   }
 
