@@ -31,7 +31,7 @@ const alwaysOptions = (
 const Header = ({ user }) => {
   return (
     <Navbar collapseOnSelect bg="info" variant="dark" expand="md">
-      <Navbar.Brand as={Link} to={'/'}><Image src="../../public/logo.png"></Image></Navbar.Brand>
+      <Navbar.Brand as={Link} to={'/'}><Image style={{ width: '6rem', heigth: '2rem' }} src="https://image.noelshack.com/fichiers/2019/30/3/1564004989-logo-chez-hicham-white.png"></Image></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto dark">
