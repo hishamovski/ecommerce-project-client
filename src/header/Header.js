@@ -24,7 +24,7 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
   <React.Fragment>
-    <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
+    <Nav.Link as={Link} to={'/products'}>Home</Nav.Link>
   </React.Fragment>
 )
 
