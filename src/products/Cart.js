@@ -11,7 +11,6 @@ import Container from 'react-bootstrap/Container'
 import StripeCheckout from 'react-stripe-checkout'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Title from './Title'
 
 class Cart extends Component {
   constructor (props) {
@@ -84,21 +83,6 @@ class Cart extends Component {
         <Button onClick={() => { this.deletefromCart(productInCart._id) }} className="mr-3" size="md" variant="danger">Delete</Button>
       </Container>
 
-      // <Col xs={6} md={4}>
-      // <Image src={productInCart.product.url} fluid/>
-      // </Col>
-      // <Col xs={6} md={4}>
-      // {productInCart.product.title}
-      // </Col>
-      // <Col xs={6} md={4}>
-      // {productInCart.product.price}
-      // </Col>
-      // <React.Fragment key={productInCart._id}>
-      //   <ListGroup.Item>
-      //     <Image src={productInCart.product.url} roundedCircle/> {productInCart.product.price}
-      //   </ListGroup.Item>
-      //   <Button onClick={() => { this.deletefromCart(productInCart._id) }} className="mr-3" size="md" variant="danger">Delete</Button>
-      // </React.Fragment>
     ))
     async function handleToken (token, addresses) {
       const response = await axios.post(
@@ -124,7 +108,6 @@ class Cart extends Component {
     }
 
     return <Layout md="8" lg="6">
-      <Title name="your" title="cart" />
       <ListGroup>
         {productsList}
       </ListGroup>

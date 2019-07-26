@@ -44,7 +44,7 @@ class SignUp extends Component {
       <Form className='auth-form' onSubmit={this.onSignUp}>
         <h3>Sign Up</h3>
         <Form.Group controlId="email">
-          <Form.Label >Product</Form.Label>
+          <Form.Label >Email</Form.Label>
           <Form.Control
             required
             type="email"
