@@ -77,7 +77,7 @@ class Cart extends Component {
           <div className="col-10 mx-auto col-lg-2">
             <Image
               src={productInCart.product.url}
-              style={{ width: '14rem', heigth: '14rem' }}
+              style={{ width: '25rem', heigth: '25rem' }}
               className="img-fluid"
               alt=""
             />
