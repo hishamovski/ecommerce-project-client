@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
-import Layout from './Layout'
+// import Layout from './Layout'
 import axios from 'axios'
 import apiUrl from '../apiConfig'
 import Image from 'react-bootstrap/Image'
-// import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import StripeCheckout from 'react-stripe-checkout'
-import { toast } from 'react-toastify'
+// import StripeCheckout from 'react-stripe-checkout'
+// import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 class Cart extends Component {
@@ -46,13 +44,28 @@ class Cart extends Component {
       .catch(console.error)
   }
 
+  deleteCart = () => {
+    axios({
+      url: `${apiUrl}/cart`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      }
+    })
+      .then(res => this.setState({ updated: true }))
+      .catch(console.error)
+  }
+
   render () {
-    const { cart, updated } = this.state
-    const productToBuy = {
-      name: 'Tesla Roadster',
-      price: 64998.67,
-      description: 'Cool car'
+    const pStyle = {
+      margin: '30px'
     }
+    const { cart, updated } = this.state
+    // const productToBuy = {
+    //   name: 'Tesla Roadster',
+    //   price: 64998.67,
+    //   description: 'Cool car'
+    // }
     if (updated) {
       this.componentDidMount()
     }
@@ -84,19 +97,19 @@ class Cart extends Component {
       </Container>
 
     ))
-    async function handleToken (token, addresses) {
-      const response = await axios.post(
-        'https://2soen.sse.codesandbox.io/checkout',
-        { token, productToBuy }
-      )
-      const { status } = response.data
-      console.log('Response:', response.data)
-      if (status === 'success') {
-        toast('Success! Check email for details', { type: 'success' })
-      } else {
-        toast('Something went wrong', { type: 'error' })
-      }
-    }
+    // async function handleToken (token, addresses) {
+    //   const response = await axios.post(
+    //     'https://2soen.sse.codesandbox.io/checkout',
+    //     { token, productToBuy }
+    //   )
+    //   const { status } = response.data
+    //   console.log('Response:', response.data)
+    //   if (status === 'success') {
+    //     toast('Success! Check email for details', { type: 'success' })
+    //   } else {
+    //     toast('Something went wrong', { type: 'error' })
+    //   }
+    // }
 
     if (cart.length === 0) {
       return <p>Your cart is empty</p>
@@ -107,19 +120,23 @@ class Cart extends Component {
       total += this.state.cart[i].product.price
     }
 
-    return <Layout md="8" lg="6">
-      <ListGroup>
-        {productsList}
-      </ListGroup>
-      <StripeCheckout
-        stripeKey='pk_test_tYXOXZbOrhhZzDDSifz32Pbn001v5qn6LG'
-        token={handleToken}
-        amount={total * 100}
-        name={productToBuy.name}
-        billingAddress
-        shippingAddress
-      />
-    </Layout>
+    return (
+      <React.Fragment>
+        <ListGroup>
+          {productsList}
+        </ListGroup>
+        <p style={pStyle}><strong> Your Total is : { total }</strong></p>
+        <Button className='info' onClick={this.deleteCart}>Submit Order</Button>
+      </React.Fragment>
+      // <StripeCheckout
+      //   stripeKey='pk_test_tYXOXZbOrhhZzDDSifz32Pbn001v5qn6LG'
+      //   token={handleToken}
+      //   amount={total * 100}
+      //   name={productToBuy.name}
+      //   billingAddress
+      //   shippingAddress
+      // />
+    )
   }
 }
 
