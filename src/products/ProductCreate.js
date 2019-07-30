@@ -32,7 +32,6 @@ class ProductCreate extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const formData = new FormData(event.target)
-    console.log(this.state.product)
     axios({
       method: 'POST',
       url: `${apiUrl}/uploads`,
@@ -52,7 +51,6 @@ class ProductCreate extends Component {
             url: res.data.upload.url
           }
         })
-        console.log(res.data.upload.url)
         axios({
           url: `${apiUrl}/products`,
           method: 'POST',

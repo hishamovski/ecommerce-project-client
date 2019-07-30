@@ -40,7 +40,20 @@ class Cart extends Component {
         'Authorization': `Token token=${this.props.user.token}`
       }
     })
-      .then(res => this.setState({ updated: true }))
+      .then(res => {
+        axios({
+          url: `${apiUrl}/carts`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+          .then(res => {
+            this.setState({ cart: res.data.carts })
+          })
+          .catch(console.error)
+      }
+      )
       .catch(console.error)
   }
 
@@ -52,30 +65,30 @@ class Cart extends Component {
         'Authorization': `Token token=${this.props.user.token}`
       }
     })
-      .then(res => this.setState({ submitted: true }))
+      .then(res => {
+        this.setState({ cart: [], submitted: true })
+      }
+      )
       .catch(console.error)
   }
 
   render () {
     const pStyle = {
       margin: '30px',
-      fontSize: '40px'
+      fontSize: '20px'
     }
 
     const confirm = {
       margin: '40px',
       color: 'green',
-      fontSize: '40px'
+      fontSize: '20px'
     }
-    const { cart, updated, submitted } = this.state
+    const { cart, submitted } = this.state
     // const productToBuy = {
     //   name: 'Tesla Roadster',
     //   price: 64998.67,
     //   description: 'Cool car'
     // }
-    if (updated) {
-      this.componentDidMount()
-    }
 
     const productsList = cart.map(productInCart => (
 
@@ -137,7 +150,7 @@ class Cart extends Component {
 
     return (
       <React.Fragment>
-        <ListGroup style={pStyle}>
+        <ListGroup>
           {productsList}
         </ListGroup>
         <p style={pStyle}><strong> Your Total is : { total }</strong></p>
