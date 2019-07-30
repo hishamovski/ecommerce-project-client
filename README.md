@@ -5,12 +5,7 @@ This is the front end of the ecormmerce application . It's designed to let users
 ```
 
 ### ERD and User Stories:
-```
-https://www.noelshack.com/2019-30-5-1564147923-67152310-2240607816249976-4109940465665572864-n.jpg
-```
-
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
-
+[![IMAGE ALT TEXT HERE](https://www.noelshack.com/2019-30-5-1564147923-67152310-2240607816249976-4109940465665572864-n.jpg)
 
 ### Technologies Used:
 ```
@@ -48,9 +43,8 @@ https://www.noelshack.com/2019-30-5-1564147923-67152310-2240607816249976-4109940
  `https://hishamovski.github.io/ecommerce-project-client/`
 
 ### Wireframe:
-```
-https://www.noelshack.com/2019-30-5-1564147930-67760609-751471961953782-3053221469665361920-n.jpg
-```
+
+[![IMAGE ALT TEXT HERE](https://www.noelshack.com/2019-30-5-1564147930-67760609-751471961953782-3053221469665361920-n.jpg)
 
 ### Set Up and Installation
 ```
@@ -61,9 +55,9 @@ npm install aws-sdk
 Users can log-in with: Email: sample@sample password: sample
 ```
 ### Screenshot of Application:
-```
-https://www.noelshack.com/2019-31-2-1564510343-screenshot-from-2019-07-30-13-57-43.png
-```
+
+[![IMAGE ALT TEXT HERE](https://www.noelshack.com/2019-31-2-1564510343-screenshot-from-2019-07-30-13-57-43.png)
+
 
 ### Unresolved Issues:
 
