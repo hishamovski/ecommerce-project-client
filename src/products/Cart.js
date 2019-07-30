@@ -122,7 +122,7 @@ class Cart extends Component {
 
     return (
       <React.Fragment>
-        <ListGroup>
+        <ListGroup style={pStyle}>
           {productsList}
         </ListGroup>
         <p style={pStyle}><strong> Your Total is : { total }</strong></p>
