@@ -7,9 +7,10 @@ This is the front end of the ecormmerce application . It's designed to let users
 ### ERD and User Stories:
 ```
 https://www.noelshack.com/2019-30-5-1564147923-67152310-2240607816249976-4109940465665572864-n.jpg
+```
+
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
-```
 
 ### Technologies Used:
 ```
