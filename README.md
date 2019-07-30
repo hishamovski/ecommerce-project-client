@@ -7,7 +7,7 @@ This is the front end of the ecormmerce application . It's designed to let users
 ### ERD and User Stories:
 
 ```
-https://www.noelshack.com/2019-30-5-1564147923-67152310-2240607816249976-4109940465665572864-n.jpg)
+https://www.noelshack.com/2019-30-5-1564147923-67152310-2240607816249976-4109940465665572864-n.jpg
 ```
 
 ### Technologies Used:
@@ -62,7 +62,7 @@ Users can log-in with: Email: sample@sample password: sample
 ### Screenshot of Application:
 
 ```
-https://www.noelshack.com/2019-31-2-1564510343-screenshot-from-2019-07-30-13-57-43.png)
+https://www.noelshack.com/2019-31-2-1564510343-screenshot-from-2019-07-30-13-57-43.png
 ```
 
 ### Unresolved Issues:
