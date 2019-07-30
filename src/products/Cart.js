@@ -15,7 +15,7 @@ class Cart extends Component {
     super(props)
     this.state = {
       cart: [],
-      updated: ''
+      submitted: null
     }
   }
 
@@ -52,15 +52,22 @@ class Cart extends Component {
         'Authorization': `Token token=${this.props.user.token}`
       }
     })
-      .then(res => this.setState({ updated: true }))
+      .then(res => this.setState({ submitted: true }))
       .catch(console.error)
   }
 
   render () {
     const pStyle = {
-      margin: '30px'
+      margin: '30px',
+      fontSize: '40px'
     }
-    const { cart, updated } = this.state
+
+    const confirm = {
+      margin: '40px',
+      color: 'green',
+      fontSize: '40px'
+    }
+    const { cart, updated, submitted } = this.state
     // const productToBuy = {
     //   name: 'Tesla Roadster',
     //   price: 64998.67,
@@ -111,8 +118,16 @@ class Cart extends Component {
     //   }
     // }
 
+    if (cart.length === 0 && submitted) {
+      return (
+        <div>
+          <p>Your cart is empty</p>
+          <p style={confirm}>Thank you for your purchase. Your order will be shipped soon</p>
+        </div>
+      )
+    }
     if (cart.length === 0) {
-      return <p>Your cart is empty</p>
+      return <p style={pStyle}> Your cart is empty</p>
     }
 
     let total = 0
